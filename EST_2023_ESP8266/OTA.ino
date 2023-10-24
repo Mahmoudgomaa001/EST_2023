@@ -27,8 +27,8 @@ const char* ElegantOTAUser = "admin";
 const char* ElegantOTAPassword = "Yonova2020";
 
 
-const char* ssid = "........";
-const char* password = "........";
+// const char* ssid = "........";
+// const char* password = "........";
 #ifdef ESP8266
 String _hostname = "Yonova-" + String(ESP.getChipId(), HEX);
 #else  //ESP32
@@ -48,12 +48,12 @@ AsyncDNSServer dns;
 
 void YonovaOTASetup(String ssid) {
   // put your setup code here, to run once:
-  Serial.begin(115200);
-  while (!Serial)
-    ;
+  // Serial.begin(115200);
+  // while (!Serial)
+  //   ;
   delay(200);
-  Serial.print("\nStarting Async_AutoConnect_ESP8266_minimal on " + String(ARDUINO_BOARD));
-  Serial.println(ESP_ASYNC_WIFIMANAGER_VERSION);
+  // Serial.print("\nStarting Async_AutoConnect_ESP8266_minimal on " + String(ARDUINO_BOARD));
+  // Serial.println(ESP_ASYNC_WIFIMANAGER_VERSION);
   ESPAsync_WiFiManager ESPAsync_wifiManager(&YONOVAwebServer, &dnsServer, "AutoConnectAP");
   //ESPAsync_wifiManager.resetSettings();   //reset saved settings
   //ESPAsync_wifiManager.setAPStaticIPConfig(IPAddress(192,168,186,1), IPAddress(192,168,186,1), IPAddress(255,255,255,0));
@@ -63,10 +63,10 @@ void YonovaOTASetup(String ssid) {
     Serial.print(F("Connected. Local IP: "));
     Serial.println(WiFi.localIP());
   } else {
-    Serial.println(ESPAsync_wifiManager.getStatus(WiFi.status()));
+    // Serial.println(ESPAsync_wifiManager.getStatus(WiFi.status()));
   }
 
-  Serial.println("configerd .... !");
+  // Serial.println("configerd .... !");
   // dnsServer = AsyncDNSServer();
 
   // webServer.on("/localip", HTTP_GET, [](AsyncWebServerRequest* request) {
