@@ -63,6 +63,7 @@ void YonovaOTASetup(String ssid) {
 
 
   WiFi.begin();
+  
   for (int i = 0; i < 150; i++) {
     delay(100);
     if (WiFi.status() == WL_CONNECTED) {
