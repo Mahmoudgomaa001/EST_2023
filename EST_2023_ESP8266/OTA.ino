@@ -58,7 +58,22 @@ void YonovaOTASetup(String ssid) {
   //ESPAsync_wifiManager.resetSettings();   //reset saved settings
   //ESPAsync_wifiManager.setAPStaticIPConfig(IPAddress(192,168,186,1), IPAddress(192,168,186,1), IPAddress(255,255,255,0));
   _hostname.toUpperCase();
-  ESPAsync_wifiManager.autoConnect(_hostname.c_str());
+
+
+
+
+  WiFi.begin();
+  for (int i = 0; i < 150; i++) {
+    delay(100);
+    if (WiFi.status() == WL_CONNECTED) {
+      break;
+    }
+  }
+
+  if (!WiFi.status() == WL_CONNECTED) {
+    ESPAsync_wifiManager.autoConnect(_hostname.c_str());
+  }
+  // ESPAsync_wifiManager.autoConnect(_hostname.c_str());
   if (WiFi.status() == WL_CONNECTED) {
     Serial.print(F("Connected. Local IP: "));
     Serial.println(WiFi.localIP());
@@ -76,7 +91,7 @@ void YonovaOTASetup(String ssid) {
   //   request->redirect("/localip");  // send all DNS requests to root
   //                            //request->send_P(200, "text/html", root_html);
   // });
-  AsyncElegantOTA.begin(&YONOVAwebServer,ElegantOTAUser,ElegantOTAPassword);  // Start AsyncElegantOTA
+  AsyncElegantOTA.begin(&YONOVAwebServer, ElegantOTAUser, ElegantOTAPassword);  // Start AsyncElegantOTA
   YONOVAwebServer.begin();
   Serial.println("HTTP server started");
   // delay(3000);
