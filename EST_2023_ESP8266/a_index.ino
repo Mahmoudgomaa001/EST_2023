@@ -41,9 +41,9 @@ const char index_html[] PROGMEM = R"rawliteral(<!DOCTYPE HTML><html>
             
               <p>
                 <i class="fa-solid fa-wind" style="color: #ffd43b;"></i>
-                <span class="dht-labels">Dust</span>
+                <span class="dht-labels">Concentration</span>
                 <span id="dust">%DUST%</span>
-                <sup class="units">HAZARD</sup>
+                <sup class="units">ug/m3</sup>
               </p>
             
 
