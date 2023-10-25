@@ -12,6 +12,7 @@
 // Initialize DHT sensor
 DHT dht(DHTPIN, DHTTYPE);
 
+
 // PM2.5 sensor pin and variables
 int pin = 3;
 unsigned long duration;
@@ -23,12 +24,18 @@ float concentration = 0;
 
 // Initialize Arduino to NodeMCU communication
 SoftwareSerial nodemcu(4, 5);  // RX, TX pins for communication with NodeMCU
+
+// Initialize buzzerPin
+const int buzzerPin = 6;
+
 // Create JSON object
 DynamicJsonDocument data(1000);
 void setup() {
   Serial.begin(9600);
+
   dht.begin();
   nodemcu.begin(9600);
+  alarmSetup();
 }
 
 void loop() {
@@ -56,4 +63,5 @@ void loop() {
 
     starttime = millis();
   }
+  alarmLoop();
 }

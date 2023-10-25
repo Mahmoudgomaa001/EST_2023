@@ -89,7 +89,7 @@ void setup() {
   // Serial.println(WiFi.localIP());
 
   arduinoSetup();
-  YonovaOTASetup("EST2023");
+  YonovaOTASetup("EST2023", AP_ONLY);
 
 
   // Route for root / web page
@@ -114,12 +114,16 @@ void setup() {
     String htmlResponse = "<div style='display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100vh; font-size: 3rem;'>Connected with IP " + ipAddress + "</div>";
     request->send(200, "text/html", htmlResponse);
   });
+  // //WiFi_AP
+  // YONOVAwebServer.onNotFound([](AsyncWebServerRequest* request) {
+  //   request->redirect("/localip");  // send all DNS requests to root
+  //                                   //request->send_P(200, "text/html", root_html);
+  // });
+  //AP_ONLY
   YONOVAwebServer.onNotFound([](AsyncWebServerRequest* request) {
-    request->redirect("/localip");  // send all DNS requests to root
+    request->redirect("/");  // send all DNS requests to root
                                     //request->send_P(200, "text/html", root_html);
   });
-
- 
 }
 
 void loop() {
