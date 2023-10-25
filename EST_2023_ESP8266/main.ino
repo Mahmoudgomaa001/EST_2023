@@ -4,11 +4,11 @@
 *********/
 
 // Import required libraries
-#include <ESP8266WiFi.h>
-#include "ESPAsyncWebServer.h"
+// #include <ESP8266WiFi.h>
+// #include "ESPAsyncWebServer.h"
 
 // Create AsyncWebServer object on port 80
-AsyncWebServer server(80);
+// AsyncWebServer server(80);
 
 String readDHTTemperature() {
 
@@ -24,7 +24,7 @@ String readDHTTemperature() {
     Serial.println("Failed to read from DHT sensor!");
     return "--";
   } else {
-    Serial.println(t);
+    // Serial.println(t);
     return String(t);
   }
 }
@@ -39,7 +39,7 @@ String readDHTHumidity() {
     Serial.println("Failed to read from DHT sensor!");
     return "--";
   } else {
-    Serial.println(h);
+    // Serial.println(h);
     return String(h);
   }
 }
@@ -52,7 +52,7 @@ String readDust() {
     Serial.println("Failed to read from DHT sensor!");
     return "--";
   } else {
-    Serial.println(c);
+    // Serial.println(c);
     return String(c);
   }
 }
@@ -74,7 +74,7 @@ String processor(const String& var) {
 
 void setup() {
   // Serial port for debugging purposes
-  Serial.begin(115200);
+  // Serial.begin(115200);
 
   //  dht.begin();
 
@@ -118,6 +118,8 @@ void setup() {
     request->redirect("/localip");  // send all DNS requests to root
                                     //request->send_P(200, "text/html", root_html);
   });
+
+ 
 }
 
 void loop() {
