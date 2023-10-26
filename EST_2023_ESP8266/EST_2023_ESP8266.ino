@@ -26,7 +26,7 @@ void arduinoSetup() {
 void arduinoLoop() {
 
   rxArduino();
-  txArduino();
+  
 }
 void rxArduino() {
 

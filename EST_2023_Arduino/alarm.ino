@@ -8,6 +8,7 @@ void alarmSetup() {
 }
 void alarmLoop() {
 
+
   StaticJsonDocument<64> control;
   DeserializationError error = deserializeJson(control, Serial);
   if (error) {
@@ -32,9 +33,11 @@ void alarmLoop() {
 }
 
 void playTune() {
+  Serial.println("Alarm on");
   tone(buzzerPin, 440);  // Play A4 note
 }
 
 void stopTune() {
+  Serial.println("Alarm off");
   noTone(buzzerPin);
 }
