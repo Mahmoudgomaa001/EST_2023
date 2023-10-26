@@ -1,17 +1,17 @@
 
 
 void xsetup() {
-EEPROM.begin(EEPROM_SIZE);
-YONOVAwebServer.on("/config", HTTP_GET, [](AsyncWebServerRequest* request) {
+  EEPROM.begin(EEPROM_SIZE);
+  YONOVAwebServer.on("/config", HTTP_GET, [](AsyncWebServerRequest* request) {
     String htmlResponse = "<!DOCTYPE html>"
                           "<html>"
                           "<head>"
                           "<title>Configrations</title>"
                           "<style>"
-                            "*{"
-                           "font-size: 2.0rem !important; "   
-                            "margin: 25px;"
-                           "}"
+                          "*{"
+                          "font-size: 2.0rem !important; "
+                          "margin: 25px;"
+                          "}"
                           "body {"
                           "  font-family: Arial, sans-serif;"
                           "  margin: 0;"
@@ -91,7 +91,7 @@ YONOVAwebServer.on("/config", HTTP_GET, [](AsyncWebServerRequest* request) {
                           "</html>";
 
     request->send(200, "text/html", htmlResponse);
-});
+  });
 
 
 
@@ -109,7 +109,8 @@ YONOVAwebServer.on("/config", HTTP_GET, [](AsyncWebServerRequest* request) {
       EEPROM.put(VAR4_ADDRESS, var4);
       EEPROM.commit();
 
-      request->send(200, "text/plain", "Values submitted successfully");
+      // request->send(200, "text/plain", "Values submitted successfully");
+      request->redirect("/config");
     } else {
       request->send(400, "text/plain", "Missing required parameters");
     }
