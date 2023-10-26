@@ -116,6 +116,7 @@ void xsetup() {
                             "*{"
                             "font-size: 2.0rem !important; "
                             "margin: 25px;"
+                            "text-align: center;"
                             "}"
                             "a {"
                             "  width: 100%;"
