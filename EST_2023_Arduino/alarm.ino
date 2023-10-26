@@ -7,28 +7,27 @@ void alarmSetup() {
   pinMode(buzzerPin, OUTPUT);
 }
 void alarmLoop() {
-  if (nodemcu.available()) {
-    StaticJsonDocument<64> control;
-    DeserializationError error = deserializeJson(control, Serial);
-    if (error) {
-      nodemcu.print("Error: ");
-      Serial.println(error.c_str());
-      return;
-    }
 
-    int buzzerState = control["buzzer"];
-    alarmDuration = control["duration"];
+  StaticJsonDocument<64> control;
+  DeserializationError error = deserializeJson(control, Serial);
+  if (error) {
+    nodemcu.print("Error: ");
+    Serial.println(error.c_str());
+    return;
+  }
 
-    if (buzzerState == 1 && !isAlarmActive) {
-      alarmStartTime = millis();
-      isAlarmActive = true;
-      playTune();
-    }
+  int buzzerState = control["buzzer"];
+  alarmDuration = control["duration"];
 
-    if (isAlarmActive && millis() - alarmStartTime >= alarmDuration) {
-      stopTune();
-      isAlarmActive = false;
-    }
+  if (buzzerState == 1 && !isAlarmActive) {
+    alarmStartTime = millis();
+    isAlarmActive = true;
+    playTune();
+  }
+
+  if (isAlarmActive && millis() - alarmStartTime >= alarmDuration) {
+    stopTune();
+    isAlarmActive = false;
   }
 }
 
