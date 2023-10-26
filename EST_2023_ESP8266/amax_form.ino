@@ -61,7 +61,7 @@ void xsetup() {
                           "</style>"
                           "</head>"
                           "<body>"
-                          "<h1>Variable Form</h1>"
+                          "<h1>Configrations</h1>"
                           "<form action=\"/submit\" method=\"GET\">"
                           "<label for=\"var1\">Max Temperature :</label>"
                           "<input type=\"float\" id=\"var1\" name=\"var1\" placeholder=\"Stored Value 1\" required>"
@@ -108,14 +108,45 @@ void xsetup() {
       EEPROM.put(VAR3_ADDRESS, var3);
       EEPROM.put(VAR4_ADDRESS, var4);
       EEPROM.commit();
+      String htmlResponse = "<!DOCTYPE html>"
+                            "<html>"
+                            "<head>"
 
+                            "<style>"
+                            "*{"
+                            "font-size: 2.0rem !important; "
+                            "margin: 25px;"
+                            "}"
+                            "a {"
+                            "  width: 100%;"
+                            "  padding: 10px;"
+                            "  background-color: #4CAF50;"
+                            "  color: white;"
+                            "  border: none;"
+                            "  text-decoration: none;"
+                            "  border-radius: 4px;"
+                            "  cursor: pointer;"
+                            "}"
+
+                            "@media (max-width: 600px) {"
+                            "  form {"
+                            "    padding: 10px;"
+                            "  }"
+                            "}"
+                            "</style>"
+                            "</head>"
+                            "<body>"
+                            "<p>Values submitted successfully</p>"
+                            "<a href=\"/\">OK</a>"
+                            "</body>"
+                            "</html>";
       // request->send(200, "text/plain", "Values submitted successfully");
-      request->redirect("/config");
-    } else {
-      request->send(400, "text/plain", "Missing required parameters");
+      request->send(200, "text/html", htmlResponse);
     }
-  });
 
+    // request->redirect("/config");
+  });
+  // request->redirect("/config");
   YONOVAwebServer.on("/getValues", HTTP_GET, [](AsyncWebServerRequest* request) {
     float var1, var2, var3, var4;
     EEPROM.get(VAR1_ADDRESS, var1);
