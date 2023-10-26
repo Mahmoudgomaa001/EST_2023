@@ -10,20 +10,19 @@ float t, h, c;
 //D6 = Rx & D5 = Tx
 // SoftwareSerial nodemcu(D6, D5);
 
-#include <EEPROM.h>
-
-
-// Define the EEPROM addresses for each variable
-#define VAR1_ADDRESS 54
-#define VAR2_ADDRESS 58
-#define VAR3_ADDRESS 62
-#define VAR4_ADDRESS 66
-
 
 // #define Max_Temp 40
 // #define Max_Hum 70
 // #define Max_Dust 3000
 // #define Beeb_Duration 1000
+#include <EEPROM.h>
+
+#define VAR1_ADDRESS 50
+#define VAR2_ADDRESS 54
+#define VAR3_ADDRESS 58
+#define VAR4_ADDRESS 62
+
+
 
 
 void arduinoSetup() {
@@ -39,7 +38,7 @@ void arduinoLoop() {
 }
 void rxArduino() {
 
-  DynamicJsonDocument data(1000);
+  DynamicJsonDocument data(200);
   DeserializationError error = deserializeJson(data, Serial);
   if (error)
     return;
@@ -52,9 +51,9 @@ void rxArduino() {
   txArduino();
 }
 void txArduino() {
-  StaticJsonDocument<64> control;
+  DynamicJsonDocument control(64);
 
-  int Max_Temp, Max_Hum, Max_Dust, Beeb_Duration;
+  float Max_Temp, Max_Hum, Max_Dust, Beeb_Duration;
   EEPROM.get(VAR1_ADDRESS, Max_Temp);
   EEPROM.get(VAR2_ADDRESS, Max_Hum);
   EEPROM.get(VAR3_ADDRESS, Max_Dust);

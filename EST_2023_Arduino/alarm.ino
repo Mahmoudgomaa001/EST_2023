@@ -7,10 +7,11 @@ bool isAlarmActive = false;
 void alarmSetup() {
   pinMode(buzzerPin, OUTPUT);
 }
+// DynamicJsonDocument control(1000);
 void alarmLoop() {
 
 
-  StaticJsonDocument<64> control;
+  DynamicJsonDocument control(100);
   DeserializationError error = deserializeJson(control, nodemcu);
   if (error) {
     Serial.print("Error: ");

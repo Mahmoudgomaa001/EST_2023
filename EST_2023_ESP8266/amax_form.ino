@@ -8,6 +8,10 @@ YONOVAwebServer.on("/config", HTTP_GET, [](AsyncWebServerRequest* request) {
                           "<head>"
                           "<title>Configrations</title>"
                           "<style>"
+                            "*{"
+                           "font-size: 2.0rem !important; "   
+                            "margin: 25px;"
+                           "}"
                           "body {"
                           "  font-family: Arial, sans-serif;"
                           "  margin: 0;"
@@ -17,7 +21,6 @@ YONOVAwebServer.on("/config", HTTP_GET, [](AsyncWebServerRequest* request) {
                           "  text-align: center;"
                           "}"
                           "form {"
-                          "  max-width: 600px;"
                           "  margin: 0 auto;"
                           "  padding: 20px;"
                           "  background-color: #f2f2f2;"
@@ -95,10 +98,10 @@ YONOVAwebServer.on("/config", HTTP_GET, [](AsyncWebServerRequest* request) {
 
   YONOVAwebServer.on("/submit", HTTP_GET, [](AsyncWebServerRequest* request) {
     if (request->hasParam("var1") && request->hasParam("var2") && request->hasParam("var3") && request->hasParam("var4")) {
-      float var1 = request->getParam("var1")->value().toInt();
-      float var2 = request->getParam("var2")->value().toInt();
-      float var3 = request->getParam("var3")->value().toInt();
-      float var4 = request->getParam("var4")->value().toInt();
+      float var1 = request->getParam("var1")->value().toFloat();
+      float var2 = request->getParam("var2")->value().toFloat();
+      float var3 = request->getParam("var3")->value().toFloat();
+      float var4 = request->getParam("var4")->value().toFloat();
 
       EEPROM.put(VAR1_ADDRESS, var1);
       EEPROM.put(VAR2_ADDRESS, var2);

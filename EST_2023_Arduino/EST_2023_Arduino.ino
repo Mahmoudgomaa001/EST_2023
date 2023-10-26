@@ -29,7 +29,7 @@ SoftwareSerial nodemcu(4, 5);  // RX, TX pins for communication with NodeMCU
 const int buzzerPin = 6;
 
 // Create JSON object
-DynamicJsonDocument data(1000);
+DynamicJsonDocument data(200);
 void setup() {
   Serial.begin(9600);
 
