@@ -95,10 +95,10 @@ YONOVAwebServer.on("/config", HTTP_GET, [](AsyncWebServerRequest* request) {
 
   YONOVAwebServer.on("/submit", HTTP_GET, [](AsyncWebServerRequest* request) {
     if (request->hasParam("var1") && request->hasParam("var2") && request->hasParam("var3") && request->hasParam("var4")) {
-      int var1 = request->getParam("var1")->value().toInt();
-      int var2 = request->getParam("var2")->value().toInt();
-      int var3 = request->getParam("var3")->value().toInt();
-      int var4 = request->getParam("var4")->value().toInt();
+      float var1 = request->getParam("var1")->value().toInt();
+      float var2 = request->getParam("var2")->value().toInt();
+      float var3 = request->getParam("var3")->value().toInt();
+      float var4 = request->getParam("var4")->value().toInt();
 
       EEPROM.put(VAR1_ADDRESS, var1);
       EEPROM.put(VAR2_ADDRESS, var2);
@@ -113,7 +113,7 @@ YONOVAwebServer.on("/config", HTTP_GET, [](AsyncWebServerRequest* request) {
   });
 
   YONOVAwebServer.on("/getValues", HTTP_GET, [](AsyncWebServerRequest* request) {
-    int var1, var2, var3, var4;
+    float var1, var2, var3, var4;
     EEPROM.get(VAR1_ADDRESS, var1);
     EEPROM.get(VAR2_ADDRESS, var2);
     EEPROM.get(VAR3_ADDRESS, var3);
