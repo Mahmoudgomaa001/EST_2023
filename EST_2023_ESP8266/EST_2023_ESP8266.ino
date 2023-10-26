@@ -38,12 +38,20 @@ void rxArduino() {
   h = data["humidity"];
   t = data["temperature"];
   c = data["concentration"];
+
+
+  txArduino();
 }
 void txArduino() {
+  DynamicJsonDocument control(64);
   if (t >= Max_Temp || h >= Max_Hum || c >= Max_Dust) {
-    DynamicJsonDocument control(64);
+
     control["buzzer"] = 1;
     control["duration"] = Beeb_Duration;
+    serializeJson(control, Serial);
+  } else {
+    control["buzzer"] = 0;
+    control["duration"] = 0;
     serializeJson(control, Serial);
   }
 }
