@@ -1,19 +1,12 @@
-#include <EEPROM.h>
 
-
-// Define the EEPROM addresses for each variable
-#define VAR1_ADDRESS 54
-#define VAR2_ADDRESS 58
-#define VAR3_ADDRESS 62
-#define VAR4_ADDRESS 66
 
 void xsetup() {
 EEPROM.begin(EEPROM_SIZE);
-YONOVAwebServer.on("/form", HTTP_GET, [](AsyncWebServerRequest* request) {
+YONOVAwebServer.on("/config", HTTP_GET, [](AsyncWebServerRequest* request) {
     String htmlResponse = "<!DOCTYPE html>"
                           "<html>"
                           "<head>"
-                          "<title>Variable Form</title>"
+                          "<title>Configrations</title>"
                           "<style>"
                           "body {"
                           "  font-family: Arial, sans-serif;"
@@ -67,14 +60,14 @@ YONOVAwebServer.on("/form", HTTP_GET, [](AsyncWebServerRequest* request) {
                           "<body>"
                           "<h1>Variable Form</h1>"
                           "<form action=\"/submit\" method=\"GET\">"
-                          "<label for=\"var1\">Variable 1:</label>"
-                          "<input type=\"text\" id=\"var1\" name=\"var1\" placeholder=\"Stored Value 1\" required>"
-                          "<label for=\"var2\">Variable 2:</label>"
-                          "<input type=\"text\" id=\"var2\" name=\"var2\" placeholder=\"Stored Value 2\" required>"
-                          "<label for=\"var3\">Variable 3:</label>"
-                          "<input type=\"text\" id=\"var3\" name=\"var3\" placeholder=\"Stored Value 3\" required>"
-                          "<label for=\"var4\">Variable 4:</label>"
-                          "<input type=\"text\" id=\"var4\" name=\"var4\" placeholder=\"Stored Value 4\" required>"
+                          "<label for=\"var1\">Max Temperature :</label>"
+                          "<input type=\"number\" id=\"var1\" name=\"var1\" placeholder=\"Stored Value 1\" required>"
+                          "<label for=\"var2\">Max Humidity:</label>"
+                          "<input type=\"number\" id=\"var2\" name=\"var2\" placeholder=\"Stored Value 2\" required>"
+                          "<label for=\"var3\">Max Concentration :</label>"
+                          "<input type=\"number\" id=\"var3\" name=\"var3\" placeholder=\"Stored Value 3\" required>"
+                          "<label for=\"var4\">Alarm Duration :</label>"
+                          "<input type=\"number\" id=\"var4\" name=\"var4\" placeholder=\"Stored Value 4\" required>"
                           "<input type=\"submit\" value=\"Submit\">"
                           "</form>"
                           "<script>"

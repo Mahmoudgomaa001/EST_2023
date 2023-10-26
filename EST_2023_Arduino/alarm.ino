@@ -3,16 +3,18 @@
 unsigned long alarmStartTime = 0;
 unsigned long alarmDuration = 0;
 bool isAlarmActive = false;
+DynamicJsonDocument control(100);
 void alarmSetup() {
   pinMode(buzzerPin, OUTPUT);
+
 }
 void alarmLoop() {
 
 
-  StaticJsonDocument<64> control;
+  
   DeserializationError error = deserializeJson(control, Serial);
   if (error) {
-    nodemcu.print("Error: ");
+    Serial.print("Error: ");
     Serial.println(error.c_str());
     return;
   }
