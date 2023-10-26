@@ -122,8 +122,9 @@ void setup() {
   //AP_ONLY
   YONOVAwebServer.onNotFound([](AsyncWebServerRequest* request) {
     request->redirect("/");  // send all DNS requests to root
-                                    //request->send_P(200, "text/html", root_html);
+                             //request->send_P(200, "text/html", root_html);
   });
+  xsetup();
 }
 
 void loop() {
