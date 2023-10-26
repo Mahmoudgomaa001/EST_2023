@@ -3,25 +3,24 @@
 unsigned long alarmStartTime = 0;
 unsigned long alarmDuration = 0;
 bool isAlarmActive = false;
-DynamicJsonDocument control(100);
+
 void alarmSetup() {
   pinMode(buzzerPin, OUTPUT);
-
 }
 void alarmLoop() {
 
 
-  
-  DeserializationError error = deserializeJson(control, Serial);
+  StaticJsonDocument<64> control;
+  DeserializationError error = deserializeJson(control, nodemcu);
   if (error) {
-    Serial.print("Error: ");
-    Serial.println(error.c_str());
+    // Serial.print("Error: ");
+    // Serial.println(error.c_str());
     return;
   }
 
   int buzzerState = control["buzzer"];
   alarmDuration = control["duration"];
-
+  serializeJson(control, Serial);
   if (buzzerState == 1 && !isAlarmActive) {
     alarmStartTime = millis();
     isAlarmActive = true;

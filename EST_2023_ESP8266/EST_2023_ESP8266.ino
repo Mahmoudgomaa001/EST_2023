@@ -24,7 +24,7 @@ float t, h, c;
 // #define Max_Hum 70
 // #define Max_Dust 3000
 // #define Beeb_Duration 1000
-DynamicJsonDocument control(100);
+
 
 void arduinoSetup() {
   // Initialize Serial port
@@ -52,7 +52,7 @@ void rxArduino() {
   txArduino();
 }
 void txArduino() {
-
+  StaticJsonDocument<64> control;
 
   int Max_Temp, Max_Hum, Max_Dust, Beeb_Duration;
   EEPROM.get(VAR1_ADDRESS, Max_Temp);
