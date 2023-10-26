@@ -13,8 +13,8 @@ void alarmLoop() {
   StaticJsonDocument<64> control;
   DeserializationError error = deserializeJson(control, nodemcu);
   if (error) {
-    // Serial.print("Error: ");
-    // Serial.println(error.c_str());
+    Serial.print("Error: ");
+    Serial.println(error.c_str());
     return;
   }
 
